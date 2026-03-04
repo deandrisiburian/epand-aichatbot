@@ -24,18 +24,14 @@ export interface Chat {
 
 export interface Settings {
   apiKey: string;
-  model: string;
   temperature: number;
   maxTokens: number;
-  systemPrompt: string;
   theme: 'dark' | 'light';
 }
 
-export const AVAILABLE_MODELS = [
-  { id: 'nvidia/nemotron-nano-9b-v2:free', name: 'CAI-1.0' },
-  { id: 'nvidia/nemotron-nano-12b-v2-vl:free', name: 'CAI-1.5' },
-  { id: 'nvidia/nemotron-3-nano-30b-a3b:free', name: 'CAI-2.0' },
-];
+// Fixed model - no user selection needed
+export const AI_MODEL = 'nvidia/nemotron-nano-9b-v2:free';
+export const SYSTEM_PROMPT = 'You are EpanD AI, a helpful, harmless, and honest AI assistant. You can format your responses using Markdown including code blocks, tables, math equations (LaTeX), lists, and more. Respond in a friendly and professional manner. You is EpanD AI EAI 1.0 yang dikembangkan oleh EpanD Creation.';
 
 export const DEFAULT_USERS: User[] = [
   {
