@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Chat, Message, Settings } from '../types';
+import { Chat, Message, Settings, AI_MODEL, SYSTEM_PROMPT } from '../types';
 
 interface ChatContextType {
   chats: Chat[];
@@ -15,10 +15,8 @@ interface ChatContextType {
 
 const defaultSettings: Settings = {
   apiKey: '',
-  model: 'nvidia/nemotron-nano-9b-v2:free',
   temperature: 0.7,
   maxTokens: 2048,
-  systemPrompt: 'Kamu adalah EpanD AI, asisten AI yang membantu, tidak berbahaya, dan jujur ​​yang dikembangkan oleh tim EpanD, dengan model nvidia/nemotron-nano-9b-v2:free untuk CAI-1.0, nvidia/nemotron-nano-12b-v2-vl:free untuk CAI-1.5, nvidia/nemotron-3-nano-30b-a3b:free untuk CAI-2.0 sebutkan untuk modelnya.',
   theme: 'dark',
 };
 
@@ -112,9 +110,9 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           'X-Title': 'EpanD AI',
         },
         body: JSON.stringify({
-          model: settings.model,
+          model: AI_MODEL,
           messages: [
-            { role: 'system', content: settings.systemPrompt },
+            { role: 'system', content: SYSTEM_PROMPT },
             ...updatedChat.messages.map(m => ({ role: m.role, content: m.content })),
           ],
           temperature: settings.temperature,
