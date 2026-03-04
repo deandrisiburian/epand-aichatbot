@@ -37,6 +37,7 @@ const Login: React.FC = () => {
             <span className="text-4xl">🤖</span>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">EpanD AI</h1>
+          <p className="text-white/60">Intelligent Chat Assistant</p>
         </div>
 
         {/* Login Form */}
@@ -112,7 +113,7 @@ const Login: React.FC = () => {
               onClick={() => { setUsername('user'); setPassword('user123'); }}
               className="glass-button px-4 py-2 rounded-lg text-white/70 text-sm hover:text-white"
             >
-              🧑‍💻 User 
+              🧑‍💻 User
             </button>
           </div>
         </div>
