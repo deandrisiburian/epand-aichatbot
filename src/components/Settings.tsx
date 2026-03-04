@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useChat } from '../context/ChatContext';
-import { AVAILABLE_MODELS } from '../types';
 import { cn } from '../utils/cn';
 
 interface SettingsProps {
@@ -90,21 +89,17 @@ const Settings: React.FC<SettingsProps> = ({ onOpenSidebar }) => {
                 </p>
               </div>
 
-              <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
-                  AI Model
-                </label>
-                <select
-                  value={settings.model}
-                  onChange={(e) => updateSettings({ model: e.target.value })}
-                  className="glass-input w-full px-4 py-3 rounded-xl text-white bg-transparent cursor-pointer"
-                >
-                  {AVAILABLE_MODELS.map((model) => (
-                    <option key={model.id} value={model.id} className="bg-black text-white">
-                      {model.name}
-                    </option>
-                  ))}
-                </select>
+              {/* Model Info */}
+              <div className="glass-button rounded-xl px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <span className="text-lg">🧠</span>
+                  </div>
+                  <div>
+                    <p className="text-white font-medium">EAI-1.0</p>
+                    <p className="text-white/40 text-xs">Powered by EpanDLabs</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -165,26 +160,6 @@ const Settings: React.FC<SettingsProps> = ({ onOpenSidebar }) => {
             </div>
           </div>
 
-          {/* System Prompt */}
-          <div className="glass rounded-2xl p-6">
-            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-              <svg className="w-5 h-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              System Prompt
-            </h3>
-            
-            <textarea
-              value={settings.systemPrompt}
-              onChange={(e) => updateSettings({ systemPrompt: e.target.value })}
-              className="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-white/40 resize-none h-32"
-              placeholder="Enter system prompt to customize AI behavior..."
-            />
-            <p className="text-white/30 text-xs mt-2">
-              Define how the AI assistant should behave and respond
-            </p>
-          </div>
-
           {/* About */}
           <div className="glass rounded-2xl p-6">
             <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
@@ -196,13 +171,46 @@ const Settings: React.FC<SettingsProps> = ({ onOpenSidebar }) => {
             
             <div className="space-y-3 text-white/60 text-sm">
               <p>
-                EpanD AI is an intelligent chat assistant powered by various AI models through OpenRouter.
+                EpanD AI is an intelligent chat assistant powered by GPT-4o Mini through OpenRouter. It supports rich text responses including markdown, code highlighting, math equations, and tables.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className="glass px-3 py-1 rounded-full text-xs text-white/50">🚀 Fast & Reliable</span>
                 <span className="glass px-3 py-1 rounded-full text-xs text-white/50">🔒 Private & Secure</span>
                 <span className="glass px-3 py-1 rounded-full text-xs text-white/50">🎨 Beautiful UI</span>
                 <span className="glass px-3 py-1 rounded-full text-xs text-white/50">📱 Mobile Friendly</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="glass rounded-2xl p-6">
+            <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              Features
+            </h3>
+            
+            <div className="grid grid-cols-2 gap-3">
+              <div className="glass-button rounded-xl p-3">
+                <span className="text-xl mb-2 block">📝</span>
+                <p className="text-white/70 text-sm font-medium">Markdown</p>
+                <p className="text-white/40 text-xs">Rich text formatting</p>
+              </div>
+              <div className="glass-button rounded-xl p-3">
+                <span className="text-xl mb-2 block">💻</span>
+                <p className="text-white/70 text-sm font-medium">Code Highlight</p>
+                <p className="text-white/40 text-xs">Syntax highlighting</p>
+              </div>
+              <div className="glass-button rounded-xl p-3">
+                <span className="text-xl mb-2 block">🧮</span>
+                <p className="text-white/70 text-sm font-medium">Math Equations</p>
+                <p className="text-white/40 text-xs">LaTeX support</p>
+              </div>
+              <div className="glass-button rounded-xl p-3">
+                <span className="text-xl mb-2 block">📊</span>
+                <p className="text-white/70 text-sm font-medium">Tables</p>
+                <p className="text-white/40 text-xs">Formatted tables</p>
               </div>
             </div>
           </div>
